@@ -1,3 +1,3 @@
 <?php 
-header( 'Location: /atop/map.html' );
+header( 'Location: /map.html' );
 ?>
