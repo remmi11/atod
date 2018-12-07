@@ -31,8 +31,8 @@ map.on('load', function () {
                 property: 'ConcentrationNormalized',
                 type: 'exponential',
                 stops: [
-                    [0, 1],
-                    [2, 4]
+                    [0, 0],
+                    [1.5, 4]
                 ]
             },
             // increase intensity as zoom level increases
@@ -92,18 +92,6 @@ map.on('load', function () {
                     [10, 18]
                 ]
               },
-            //   'circle-color': {
-            //     property: 'ConcentrationNormalized',
-            //     type: 'exponential',
-            //     stops: [
-            //       [0, 'rgba(236,222,239,0)'],
-            //       [0.2, 'rgb(236,222,239)'],
-            //       [0.4, 'rgb(208,209,230)'],
-            //       [0.6, 'rgb(166,189,219)'],
-            //       [0.8, 'rgb(103,169,207)'],
-            //       [1.0, 'rgb(28,144,153)']
-            //     ]
-            //   },
             'circle-color': [
                 'match',
                 ['get', 'DisplayColor'],
