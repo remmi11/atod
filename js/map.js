@@ -1,23 +1,25 @@
-// $(document).ready(function () {
-//     "use strict";
-
 mapboxgl.accessToken = 'pk.eyJ1Ijoid3RnZW9ncmFwaGVyIiwiYSI6ImNpdGFicWJqYjAwdzUydHM2M2g0MmhsYXAifQ.oO-MYNUC2tVeXa1xYbCIyw';
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v9',
     center: [-4.4085481716901995, 5.598509482775725],
     zoom: 2,
+    minzoom: 2,
     maxzoom: 12
 });
 
+// var geojson = "map-data2.php";
+// var geojson = "map-data2(2).php";
 var geojson = "map-data2.php";
-var geojson2 = "map-data2(2).php";
+
+var ar = "<?php echo json_encode($e) ?>";
+console.log(ar);
 
 map.on('load', function () {
 
     map.addSource('samples', {
         "type": "geojson",
-        "data": geojson2
+        "data": geojson
     });
 
     map.addLayer({
@@ -83,7 +85,7 @@ map.on('load', function () {
         minzoom: 5,
         paint: {
             // increase the radius of the circle as the zoom level and ConcentrationNormalized value increases
-              'circle-radius': {
+            'circle-radius': {
                 property: 'ConcentrationNormalized',
                 type: 'exponential',
                 stops: [
@@ -91,7 +93,7 @@ map.on('load', function () {
                     [8, 15],
                     [10, 18]
                 ]
-              },
+            },
             'circle-color': [
                 'match',
                 ['get', 'DisplayColor'],
@@ -116,21 +118,44 @@ map.on('load', function () {
         }
     }, 'waterway-label');
 
-    map.on('click', 'samples-point', function (e) {
-        new mapboxgl.Popup()
-            .setLngLat(e.features[0].geometry.coordinates)
-            .setHTML('<b>Type Description: </b>' + e.features[0].properties.TypeDescription + 
+    // var bounds = new mapboxgl.LngLatBounds();
+    // var features = map.queryRenderedFeatures({ layers: ['samples-heat'] });
+    // // var feature = features[0];
+    // features.forEach(function (e) {
+    //     bounds.extend(e.geometry.coordinates);
+    //     // console.log(e[0].geometry)
+    // });
+
+    // map.fitBounds(bounds);    
+
+    // Geographic coordinates of the LineString
+    // var coordinates = geojson.features[0].geometry.coordinates;
+
+    // Pass the first coordinates in the LineString to `lngLatBounds` &
+    // wrap each coordinate pair in `extend` to include them in the bounds
+    // result. A variation of this technique could be applied to zooming
+    // to the bounds of multiple Points or Polygon geomteries - it just
+    // requires wrapping all the coordinates with the extend method.
+    // var bounds = coordinates.reduce(function (bounds, coord) {
+    //     return bounds.extend(coord);
+    // }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
+
+    // map.fitBounds(bounds, {
+    //     padding: 20
+    // });
+
+});
+
+map.on('click', 'samples-point', function (e) {
+    new mapboxgl.Popup()
+
+        .setLngLat(e.features[0].geometry.coordinates)
+
+        .setHTML('<b>Type Description: </b>' + e.features[0].properties.TypeDescription +
             '<br><b>Concentration: </b>' + e.features[0].properties.Concentration +
-            '<br><b>Unit: <b>' + e.features[0].properties.Unit +
-            '<br><b>Date: <b>' + e.features[0].properties.Date +
-            '<br><b>Notes: <b><br>' + e.features[0].properties.Unit )
+            '<br><b>Unit: </b>' + e.features[0].properties.Unit +
+            '<br><b>Date: </b>' + e.features[0].properties.Date +
+            '<br><b>Notes: </b><br>' + e.features[0].properties.Unit)
 
-
-            // TypeDescription (string)
-            // Concentration (float)
-            // Unit (string)
-            // Date (string, [M/D/YYYY])
-            // Notes (string)
-            .addTo(map);
-    });
+        .addTo(map);
 });
