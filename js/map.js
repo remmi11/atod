@@ -12,12 +12,7 @@ var map = new mapboxgl.Map({
     maxzoom: 12
 });
 
-// var geojson = "map-data2.php";
-// var geojson = "map-data2(2).php";
 var geojson = "map-data2.php";
-
-var ar = "<?php echo json_encode($e) ?>";
-console.log(ar);
 
 map.on('load', function () {
 
