@@ -35,6 +35,17 @@ footer {
 .back-to-top {
 	display: none;
 }
+
+.mapboxgl-popup {
+	max-width: 400px;
+	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.mapboxgl-popup-close-button {
+	right: 10px;
+	top: 2px;
+}
+
 @media (min-width: 1600px) {
 }
 @media (min-width: 120px) {

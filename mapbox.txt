@@ -20,8 +20,10 @@ livestock b
 
 12/9/2018
 Add plus minus zoom butttons
-close buttton padding
-fixed width on popup
-stroke color if normailized value above 1
+improve popup:
+	close buttton padding
+	fixed width on popup
+stroke color around if normailized value above 1
 add color legend (11 items)
 readme
+spiderfy gl js 

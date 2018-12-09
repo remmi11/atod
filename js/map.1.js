@@ -88,17 +88,17 @@ map.on('load', function () {
                 type: 'exponential',
                 stops: [
                   [{ zoom: 5, value: 0 }, 0],
-                  [{ zoom: 5, value: 0.999 }, 0],
-                  [{ zoom: 5, value: 1 }, 12],
-                  [{ zoom: 5, value: 5 }, 12],
+                  [{ zoom: 5, value: 0.9 }, 0],
+                  [{ zoom: 5, value: 1 }, 15],
+                  [{ zoom: 5, value: 5 }, 15],
                   [{ zoom: 8, value: 0 }, 0],
-                  [{ zoom: 8, value: 0.999 }, 0],
-                  [{ zoom: 8, value: 1 }, 17],
-                  [{ zoom: 8, value: 5 }, 17],
-                  [{ zoom: 10, value: 0 }, 0],
-                  [{ zoom: 10, value: 0.999 }, 0],
-                  [{ zoom: 10, value: 1 }, 22],
-                  [{ zoom: 10, value: 5 }, 22],
+                  [{ zoom: 8, value: 0.99 }, 0],
+                  [{ zoom: 8, value: 1 }, 25],
+                  [{ zoom: 8, value: 5 }, 25],
+                  [{ zoom: 10, value: 0 }, 20],
+                  [{ zoom: 10, value: 0.99 }, 0],
+                  [{ zoom: 10, value: 1 }, 45],
+                  [{ zoom: 10, value: 5 }, 45],
                 ]
               },
             'circle-color': 'red',
@@ -123,25 +123,32 @@ map.on('load', function () {
                 property: 'ConcentrationNormalized',
                 type: 'exponential',
                 stops: [
-                    [5, 10],
-                    [8, 15],
-                    [10, 20]
+[                    [{ zoom: 5, value: 0 }, 0],
+                    [{ zoom: 5, value: 0.9 }, 0],
+                    [{ zoom: 5, value: 1 }, 15],
+                    [{ zoom: 5, value: 5 }, 15],
+                    [{ zoom: 8, value: 0 }, 0],
+                    [{ zoom: 8, value: 0.99 }, 0],
+                    [{ zoom: 8, value: 1 }, 25],
+                    [{ zoom: 8, value: 5 }, 25],
+                    [{ zoom: 10, value: 0 }, 20],
+                    [{ zoom: 10, value: 0.99 }, 0],
+                    [{ zoom: 10, value: 1 }, 45],
+                    [{ zoom: 10, value: 5 }, 45],]
                 ]
               },
             'circle-color': [
                 'match',
                 ['get', 'DisplayColor'],
-                '005493', '#005493',
-                '0096FF', '#0096FF',
+                '5493', '#005493',
                 '941100', '#941100',
-                'FF7D78', '#FF7D78',
-                'FF9300', '#FF9300',
+                '945200', '#945200',
+                '0096FF', '#0096ff',
+                'EBEBEB', '#EBEBEB',
                 'FF7E79', '#FF7E79',
-                '935100', '#935100',
-                'EAEAEA', '#EAEAEA',
-                'FFD478', '#FFD478',
-                'FEFC78', '#FEFC78',
-                /* other */ '#D783FF'
+                'ffc79', '#0ffc79',
+                'FFD479', '#FFD479',
+                /* other */ '#ccc'
             ],
             'circle-stroke-color': 'black',
             'circle-stroke-width': 0,
@@ -170,12 +177,7 @@ map.on('click', 'samples-point', function (e) {
 
         .setLngLat(e.features[0].geometry.coordinates)
 
-        // .setHTML('<div id=\'popup\' class=\'popup\' style=\'z-index: 10;\'> <span style=\'font-weight: 900;\'>' + e.features[0].properties.TypeDescription + '</span>' +
-        // '<ul class=\'list-group\'>' + '<b>Concentration: </b>' + e.features[0].properties.Concentration + ' ' + e.features[0].properties.Unit +
-        // '<li class=\'list-group-item\'>' + e.features[0].properties.Date +' </li>' +
-        // '<li class=\'list-group-item\'><b>Notes:</b><br>' + e.features[0].properties.ConcentrationNormalized + ' </li></ul></div>')
-
-        .setHTML('<span style=\'font-weight: 900;\'>' + e.features[0].properties.TypeDescription + '</span>' +
+        .setHTML('<div id=\'popup\' class=\'popup\' style=\'z-index: 10;\'> <span style=\'font-weight: 900;\'>' + e.features[0].properties.TypeDescription + '</span>' +
         '<ul class=\'list-group\'>' + '<b>Concentration: </b>' + e.features[0].properties.Concentration + ' ' + e.features[0].properties.Unit +
         '<li class=\'list-group-item\'>' + e.features[0].properties.Date +' </li>' +
         '<li class=\'list-group-item\'><b>Notes:</b><br>' + e.features[0].properties.Notes + ' </li></ul></div>')
