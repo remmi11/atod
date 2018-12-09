@@ -1,9 +1,7 @@
-// mapboxgl.accessToken = 'pk.eyJ1Ijoid3RnZW9ncmFwaGVyIiwiYSI6ImNpdGFicWJqYjAwdzUydHM2M2g0MmhsYXAifQ.oO-MYNUC2tVeXa1xYbCIyw';
 mapboxgl.accessToken = 'pk.eyJ1IjoiYXRvZCIsImEiOiJjanA5anp5cnQwNTB5M3JvNTgyeTR1NjZiIn0.q5oquljep0gfRnaIsgBGiA';
 
 var map = new mapboxgl.Map({
     container: 'map',
-    // style: 'mapbox://styles/mapbox/streets-v9',
     style: 'mapbox://styles/atod/cjpgfws3y56qm2rodj9kyegy0',
     center: [39.701319, 21.697954],
     center: [-4.4085481716901995, 5.598509482775725],
@@ -134,7 +132,6 @@ map.on('load', function () {
                 '941100', '#941100',
                 'FF7D78', '#FF7D78',
                 'FF9300', '#FF9300',
-                'FF7E79', '#FF7E79',
                 '935100', '#935100',
                 'EAEAEA', '#EAEAEA',
                 'FFD478', '#FFD478',
@@ -151,16 +148,6 @@ map.on('load', function () {
             }
         }
     });
-
-    // var bounds = new mapboxgl.LngLatBounds();
-    // var features = map.queryRenderedFeatures({ layers: ['samples-heat'] });
-    // // var feature = features[0];
-    // features.forEach(function (e) {
-    //     bounds.extend(e.geometry.coordinates);
-    //     // console.log(e[0].geometry)
-    // });
-
-    // map.fitBounds(bounds);    
 });
 
 map.on('click', 'samples-point', function (e) {
@@ -185,30 +172,21 @@ map.on('click', 'samples-point', function (e) {
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl({ position: 'top-left' }));
 
-colors = ['#005493', '#0096FF', '#941100', '#FF7D78', '#FF9300', '#FF7E79', '#935100', '#EAEAEA', '#FFD478', '#FEFC78', '#D783FF']
-
-colors.forEach(function (e) {
-    legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 0 ' + [(20 - 15) / 2] + 'px"></span><p>' + e + '</p></div>');
-});
-
-function mouseClick(e) {
-    var features = map.queryRenderedFeatures(e.point, {
-        layers: ['samples-point']
-    }),
-        numberOfSpiderifiedMarkers = _.random(5, 30);
-    if (!features.length) {
-        //remove old spiderfy
-        return;
-    } else {
-        spiderfier.spiderfy(e.lngLat, _.map(_.range(numberOfSpiderifiedMarkers), function (index) {
-            return { id: index };
-        }));
+dict = {
+    '#005493': 'Human - Blood', 
+    '#0096FF':'Human - Urine', 
+    '#941100':'Livestock - Blood', 
+    '#FF7D78':'Livestock - Urine', 
+    '#FF9300':'Food - Peanuts', 
+    '#935100':'Food - Cocoa', 
+    '#EAEAEA':'Food - Milk', 
+    '#FFD478':'Food - Wheat', 
+    '#FEFC78':'Food - Corn', 
+    '#D783FF':'Food - Other'
     }
-}
 
-function mouseMove(e) {
-    var features = map.queryRenderedFeatures(e.point, {
-        layers: ['samples-point']
-    });
-    map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+for (var key in dict){
+  console.log( key, dict[key] );
+  legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 0 ' + [(20 - 15) / 2] + 'px;background-color:'  + key + ';"></span><p>' + dict[key] + '</p><br></div>');
 }
+legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 10 0px ' + [(20 - 15) / 2] + 'px;background-color: #ffffff; border: 2px solid red;"></span><br><p>' + 'Concentrations > 1.0' + '</p><br></div>');
