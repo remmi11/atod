@@ -89,16 +89,16 @@ map.on('load', function () {
                 stops: [
                   [{ zoom: 5, value: 0 }, 0],
                   [{ zoom: 5, value: 0.999 }, 0],
-                  [{ zoom: 5, value: 1 }, 12],
-                  [{ zoom: 5, value: 5 }, 12],
+                  [{ zoom: 5, value: 1 }, 13],
+                  [{ zoom: 5, value: 5 }, 13],
                   [{ zoom: 8, value: 0 }, 0],
                   [{ zoom: 8, value: 0.999 }, 0],
-                  [{ zoom: 8, value: 1 }, 17],
-                  [{ zoom: 8, value: 5 }, 17],
+                  [{ zoom: 8, value: 1 }, 18],
+                  [{ zoom: 8, value: 5 }, 18],
                   [{ zoom: 10, value: 0 }, 0],
                   [{ zoom: 10, value: 0.999 }, 0],
-                  [{ zoom: 10, value: 1 }, 22],
-                  [{ zoom: 10, value: 5 }, 22],
+                  [{ zoom: 10, value: 1 }, 23],
+                  [{ zoom: 10, value: 5 }, 23],
                 ]
               },
             'circle-color': 'red',
@@ -120,8 +120,6 @@ map.on('load', function () {
         minzoom: 5,
         paint: {
             'circle-radius': {
-                property: 'ConcentrationNormalized',
-                type: 'exponential',
                 stops: [
                     [5, 10],
                     [8, 15],
@@ -186,3 +184,9 @@ map.on('click', 'samples-point', function (e) {
 
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl({ position: 'top-left' }));
+
+colors = ['#005493','#0096FF','#941100','#FF7D78','#FF9300','#FF7E79','#935100','#EAEAEA','#FFD478','#FEFC78','#D783FF']
+
+color.forEach(function(quantile) {
+    legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 0 ' + [(20 - 15) / 2] + 'px"></span><p>' + color + '</p></div>');
+  });
