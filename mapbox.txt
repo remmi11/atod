@@ -3,3 +3,25 @@ aJGkLCCusVg37C;?
 
 atod
 UntA[ANqe84328tCrFJg3p3zF3$,3}4^
+
+Popup:
+
+
+header {type}
+concentration: concentration
+date (label)
+get rid of type description label and date label
+
+typedescription value
+
+
+livestock b
+
+
+12/9/2018
+Add plus minus zoom butttons
+close buttton padding
+fixed width on popup
+stroke color if normailized value above 1
+add color legend (11 items)
+readme
