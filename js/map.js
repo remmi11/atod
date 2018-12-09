@@ -186,7 +186,7 @@ dict = {
     }
 
 for (var key in dict){
-  console.log( key, dict[key] );
+//   console.log( key, dict[key] );
   legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 0 ' + [(20 - 15) / 2] + 'px;background-color:'  + key + ';"></span><p>' + dict[key] + '</p><br></div>');
 }
-legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 10 0px ' + [(20 - 15) / 2] + 'px;background-color: #ffffff; border: 2px solid red;"></span><br><p>' + 'Concentrations > 1.0' + '</p><br></div>');
+legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 0 ' + [(20 - 15) / 2] + 'px;background-color: #ffffff; border: 2px solid red;"></span><br><p>' + 'Above Normal Range' + '</p><br></div>');
