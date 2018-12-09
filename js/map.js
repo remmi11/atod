@@ -1,7 +1,11 @@
-mapboxgl.accessToken = 'pk.eyJ1Ijoid3RnZW9ncmFwaGVyIiwiYSI6ImNpdGFicWJqYjAwdzUydHM2M2g0MmhsYXAifQ.oO-MYNUC2tVeXa1xYbCIyw';
+// mapboxgl.accessToken = 'pk.eyJ1Ijoid3RnZW9ncmFwaGVyIiwiYSI6ImNpdGFicWJqYjAwdzUydHM2M2g0MmhsYXAifQ.oO-MYNUC2tVeXa1xYbCIyw';
+mapboxgl.accessToken = 'pk.eyJ1IjoiYXRvZCIsImEiOiJjanA5anp5cnQwNTB5M3JvNTgyeTR1NjZiIn0.q5oquljep0gfRnaIsgBGiA';
+
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9',
+    // style: 'mapbox://styles/mapbox/streets-v9',
+    style: 'mapbox://styles/atod/cjpgfws3y56qm2rodj9kyegy0',
+    center: [39.701319, 21.697954],
     center: [-4.4085481716901995, 5.598509482775725],
     zoom: 2,
     minzoom: 2,
@@ -85,15 +89,81 @@ map.on('load', function () {
         minzoom: 5,
         paint: {
             // increase the radius of the circle as the zoom level and ConcentrationNormalized value increases
+            // 'circle-radius': {
+            //     property: 'ConcentrationNormalized',
+            //     type: 'exponential',
+            //     stops: [
+            //         [5, 10],
+            //         [8, 15],
+            //         [10, 18]
+            //     ]
+            // },
             'circle-radius': {
                 property: 'ConcentrationNormalized',
                 type: 'exponential',
                 stops: [
-                    [5, 10],
-                    [8, 15],
-                    [10, 18]
+                  [{ zoom: 5, value: 0 }, 5],
+                  [{ zoom: 5, value: 0.1 }, 5],
+                  [{ zoom: 5, value: 0.2 }, 5],
+                  [{ zoom: 5, value: 0.3 }, 5],
+                  [{ zoom: 5, value: 0.4 }, 5],
+                  [{ zoom: 5, value: 0.5 }, 5],
+                  [{ zoom: 5, value: 0.6 }, 5],
+                  [{ zoom: 5, value: 0.7 }, 5],
+                  [{ zoom: 5, value: 0.8 }, 5],
+                  [{ zoom: 5, value: 0.9 }, 5],
+                  [{ zoom: 5, value: 1 }, 10],
+                  [{ zoom: 5, value: 1.1 }, 10],
+                  [{ zoom: 5, value: 1.2 }, 10],
+                  [{ zoom: 5, value: 1.3 }, 10],
+                  [{ zoom: 5, value: 1.4 }, 10],
+                  [{ zoom: 5, value: 1.5 }, 10],
+                  [{ zoom: 5, value: 1.6 }, 10],
+                  [{ zoom: 5, value: 1.7 }, 10],
+                  [{ zoom: 5, value: 1.8 }, 10],
+                  [{ zoom: 5, value: 1.9 }, 10],
+                  [{ zoom: 8, value: 0 }, 10],
+                  [{ zoom: 8, value: 0.1 }, 10],
+                  [{ zoom: 8, value: 0.2 }, 10],
+                  [{ zoom: 8, value: 0.3 }, 10],
+                  [{ zoom: 8, value: 0.4 }, 10],
+                  [{ zoom: 8, value: 0.5 }, 10],
+                  [{ zoom: 8, value: 0.6 }, 10],
+                  [{ zoom: 8, value: 0.7 }, 10],
+                  [{ zoom: 8, value: 0.8 }, 10],
+                  [{ zoom: 8, value: 0.9 }, 10],
+                  [{ zoom: 8, value: 1 }, 20],
+                  [{ zoom: 8, value: 1.1 }, 20],
+                  [{ zoom: 8, value: 1.2 }, 20],
+                  [{ zoom: 8, value: 1.3 }, 20],
+                  [{ zoom: 8, value: 1.4 }, 20],
+                  [{ zoom: 8, value: 1.5 }, 20],
+                  [{ zoom: 8, value: 1.6 }, 20],
+                  [{ zoom: 8, value: 1.7 }, 20],
+                  [{ zoom: 8, value: 1.8 }, 20],
+                  [{ zoom: 8, value: 1.9 }, 20],
+                  [{ zoom: 10, value: 0 }, 20],
+                  [{ zoom: 10, value: 0.1 }, 20],
+                  [{ zoom: 10, value: 0.2 }, 20],
+                  [{ zoom: 10, value: 0.3 }, 20],
+                  [{ zoom: 10, value: 0.4 }, 20],
+                  [{ zoom: 10, value: 0.5 }, 20],
+                  [{ zoom: 10, value: 0.6 }, 20],
+                  [{ zoom: 10, value: 0.7 }, 20],
+                  [{ zoom: 10, value: 0.8 }, 20],
+                  [{ zoom: 10, value: 0.9 }, 20],
+                  [{ zoom: 10, value: 1 }, 40],
+                  [{ zoom: 10, value: 1.1 }, 40],
+                  [{ zoom: 10, value: 1.2 }, 40],
+                  [{ zoom: 10, value: 1.3 }, 40],
+                  [{ zoom: 10, value: 1.4 }, 40],
+                  [{ zoom: 10, value: 1.5 }, 40],
+                  [{ zoom: 10, value: 1.6 }, 40],
+                  [{ zoom: 10, value: 1.7 }, 40],
+                  [{ zoom: 10, value: 1.8 }, 40],
+                  [{ zoom: 10, value: 1.9 }, 40],
                 ]
-            },
+              },
             'circle-color': [
                 'match',
                 ['get', 'DisplayColor'],
@@ -151,11 +221,10 @@ map.on('click', 'samples-point', function (e) {
 
         .setLngLat(e.features[0].geometry.coordinates)
 
-        .setHTML('<b>Type Description: </b>' + e.features[0].properties.TypeDescription +
-            '<br><b>Concentration: </b>' + e.features[0].properties.Concentration +
-            '<br><b>Unit: </b>' + e.features[0].properties.Unit +
-            '<br><b>Date: </b>' + e.features[0].properties.Date +
-            '<br><b>Notes: </b><br>' + e.features[0].properties.Unit)
+        .setHTML('<h2>' + e.features[0].properties.TypeDescription + '</h2>' +
+            '<b>Concentration: </b>' + e.features[0].properties.Concentration + ' ' + e.features[0].properties.Unit +
+            '<br>' + e.features[0].properties.Date +
+            '<br><b>Notes: </b><br>' + e.features[0].properties.Notes)
 
         .addTo(map);
 });
