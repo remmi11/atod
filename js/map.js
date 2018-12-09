@@ -87,20 +87,20 @@ map.on('load', function () {
                 property: 'ConcentrationNormalized',
                 type: 'exponential',
                 stops: [
-                  [{ zoom: 5, value: 0 }, 0],
-                  [{ zoom: 5, value: 0.999 }, 0],
-                  [{ zoom: 5, value: 1 }, 13],
-                  [{ zoom: 5, value: 5 }, 13],
-                  [{ zoom: 8, value: 0 }, 0],
-                  [{ zoom: 8, value: 0.999 }, 0],
-                  [{ zoom: 8, value: 1 }, 18],
-                  [{ zoom: 8, value: 5 }, 18],
-                  [{ zoom: 10, value: 0 }, 0],
-                  [{ zoom: 10, value: 0.999 }, 0],
-                  [{ zoom: 10, value: 1 }, 23],
-                  [{ zoom: 10, value: 5 }, 23],
+                    [{ zoom: 5, value: 0 }, 0],
+                    [{ zoom: 5, value: 0.999 }, 0],
+                    [{ zoom: 5, value: 1 }, 13],
+                    [{ zoom: 5, value: 5 }, 13],
+                    [{ zoom: 8, value: 0 }, 0],
+                    [{ zoom: 8, value: 0.999 }, 0],
+                    [{ zoom: 8, value: 1 }, 18],
+                    [{ zoom: 8, value: 5 }, 18],
+                    [{ zoom: 10, value: 0 }, 0],
+                    [{ zoom: 10, value: 0.999 }, 0],
+                    [{ zoom: 10, value: 1 }, 23],
+                    [{ zoom: 10, value: 5 }, 23],
                 ]
-              },
+            },
             'circle-color': 'red',
             'circle-stroke-color': 'red',
             'circle-stroke-width': 0,
@@ -125,7 +125,7 @@ map.on('load', function () {
                     [8, 15],
                     [10, 20]
                 ]
-              },
+            },
             'circle-color': [
                 'match',
                 ['get', 'DisplayColor'],
@@ -174,19 +174,41 @@ map.on('click', 'samples-point', function (e) {
         // '<li class=\'list-group-item\'><b>Notes:</b><br>' + e.features[0].properties.ConcentrationNormalized + ' </li></ul></div>')
 
         .setHTML('<span style=\'font-weight: 900;\'>' + e.features[0].properties.TypeDescription + '</span>' +
-        '<ul class=\'list-group\'>' + '<b>Concentration: </b>' + e.features[0].properties.Concentration + ' ' + e.features[0].properties.Unit +
-        '<li class=\'list-group-item\'>' + e.features[0].properties.Date +' </li>' +
-        '<li class=\'list-group-item\'><b>Notes:</b><br>' + e.features[0].properties.Notes + ' </li></ul></div>')
+            '<ul class=\'list-group\'>' + '<b>Concentration: </b>' + e.features[0].properties.Concentration + ' ' + e.features[0].properties.Unit +
+            '<li class=\'list-group-item\'>' + e.features[0].properties.Date + ' </li>' +
+            '<li class=\'list-group-item\'><b>Notes:</b><br>' + e.features[0].properties.Notes + ' </li></ul></div>')
 
         .addTo(map);
-       
+
 });
 
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl({ position: 'top-left' }));
 
-colors = ['#005493','#0096FF','#941100','#FF7D78','#FF9300','#FF7E79','#935100','#EAEAEA','#FFD478','#FEFC78','#D783FF']
+colors = ['#005493', '#0096FF', '#941100', '#FF7D78', '#FF9300', '#FF7E79', '#935100', '#EAEAEA', '#FFD478', '#FEFC78', '#D783FF']
 
-color.forEach(function(quantile) {
-    legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 0 ' + [(20 - 15) / 2] + 'px"></span><p>' + color + '</p></div>');
-  });
+colors.forEach(function (e) {
+    legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 0 ' + [(20 - 15) / 2] + 'px"></span><p>' + e + '</p></div>');
+});
+
+function mouseClick(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+        layers: ['samples-point']
+    }),
+        numberOfSpiderifiedMarkers = _.random(5, 30);
+    if (!features.length) {
+        //remove old spiderfy
+        return;
+    } else {
+        spiderfier.spiderfy(e.lngLat, _.map(_.range(numberOfSpiderifiedMarkers), function (index) {
+            return { id: index };
+        }));
+    }
+}
+
+function mouseMove(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+        layers: ['samples-point']
+    });
+    map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+}
