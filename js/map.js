@@ -1,16 +1,26 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoiYXRvZCIsImEiOiJjanA5anp5cnQwNTB5M3JvNTgyeTR1NjZiIn0.q5oquljep0gfRnaIsgBGiA';
+// mapboxgl.accessToken = 'pk.eyJ1IjoiYXRvZCIsImEiOiJjanA5anp5cnQwNTB5M3JvNTgyeTR1NjZiIn0.q5oquljep0gfRnaIsgBGiA';
 
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/atod/cjpgfws3y56qm2rodj9kyegy0',
-    center: [39.701319, 21.697954],
-    center: [-4.4085481716901995, 5.598509482775725],
-    zoom: 2,
-    minzoom: 2,
-    maxzoom: 12
+// var map = new mapboxgl.Map({
+//     container: 'map',
+//     style: 'mapbox://styles/atod/cjpgfws3y56qm2rodj9kyegy0',
+//     center: [39.701319, 21.697954],
+//     center: [-4.4085481716901995, 5.598509482775725],
+//     zoom: 2,
+//     minzoom: 2,
+//     maxzoom: 12
+// });
+
+// mapboxgl.accessToken = 'pk.eyJ1Ijoid3RnZW9ncmFwaGVyIiwiYSI6ImNpdGFicWJqYjAwdzUydHM2M2g0MmhsYXAifQ.oO-MYNUC2tVeXa1xYbCIyw';
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiYXRvZCIsImEiOiJjanA5anp5cnQwNTB5M3JvNTgyeTR1NjZiIn0.q5oquljep0gfRnaIsgBGiA';
+const map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/atod/cjpgfws3y56qm2rodj9kyegy0',
+center: [39.701319, 21.697954],
+zoom: 2.8
 });
 
-var geojson = "map-data2.php";
+var geojson = "../atop/map-data.php";
 
 map.on('load', function () {
 
