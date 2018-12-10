@@ -20,7 +20,7 @@ center: [39.701319, 21.697954],
 zoom: 2.8
 });
 
-var geojson = "../atop/map-data.php";
+var geojson = "map-data.php";
 
 map.on('load', function () {
 
