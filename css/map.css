@@ -1,24 +1,58 @@
+/* @media (max-width: 375px) {
+    #map {
+        height: 70%;
+    }
+} */
+/* 
+@media (max-width: 480px) {
+    #map {
+        height: 70%;
+    }
+}
+@media (max-width: 375px) {
+    #map {
+        height: 70%;
+    }
+}
+@media (max-width: 375px) {
+    #map {
+        height: 70%;
+    }
+}
+
+@media (max-width: 480px) {
+    #map {
+        height: 70%;
+    }
+} */
+/* @media (max-width: 375px) {
+    #map {
+        height: 68vh;
+    }
+} */
+
+/* @media (max-width: 480px) {
+    #map {
+        height: 74vh;
+    }
+}
 @media (max-width: 375px) {
     #map {
         height: 68vh;
     }
 }
 
-@media (min-width: 400px) {
+@media (max-width: 480px) {
     #map {
         height: 74vh;
     }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 480px) {
     #map {
-        height: 75vh;
+        height: 74vh;
     }
-}
-
-#map {
-    height: 66vh;
-}
+} */
 
 .mapboxgl-popup {
     max-width: 300px;

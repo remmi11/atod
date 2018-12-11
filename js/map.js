@@ -16,8 +16,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYXRvZCIsImEiOiJjanA5anp5cnQwNTB5M3JvNTgyeTR1N
 const map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/atod/cjpgfws3y56qm2rodj9kyegy0',
-center: [39.701319, 21.697954],
-zoom: 2.8
+center: [1.522281952417984, 27.10609555592403],
+zoom: 1
 });
 
 var geojson = "map-data.php";
