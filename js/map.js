@@ -12,12 +12,68 @@
 
 // mapboxgl.accessToken = 'pk.eyJ1Ijoid3RnZW9ncmFwaGVyIiwiYSI6ImNpdGFicWJqYjAwdzUydHM2M2g0MmhsYXAifQ.oO-MYNUC2tVeXa1xYbCIyw';
 
+// $("button").click(function () {
+//     $(".legend").toggle("slide");
+// });
+
+// $("button").on("click", function (e) {
+//     e.preventDefault();
+//     if ($('.legend').hasClass("open")) {
+//         closeSidepage();
+//     } else {
+//         openSidepage()
+//     }
+// }); // end close button event handler
+
+// function openSidepage() {
+//     $('.legend').addClass("open");
+//     // $('.accordion').addClass("open");
+//     // $('.accordion').animate({
+//     //     left: '350px'
+//     // }, 400, 'easeOutBack');
+//     $('.legend').animate({
+//         left: '350px'
+//     }, 400, 'easeOutBack');
+// }
+
+// function closeSidepage() {
+//     $('.legend').removeClass("open");
+//     // $('.accordion').removeClass("open");
+//     // $('.accordion').animate({
+//     //     left: '0px'
+//     // }, 400, 'easeOutQuint');
+//     $('.legend').animate({
+//         left: '0px'
+//     }, 400, 'easeOutQuint');
+// }
+// $( "button" ).click(function() {
+
+//     // Set the effect type
+//     var effect = 'slide';
+
+//     // Set the options for the effect type chosen
+//     var options = { direction: "right" };
+
+//     // Set the duration (default: 400 milliseconds)
+//     var duration = 500;
+
+//     $('.legend').toggle(effect, options, duration);
+// });
+
+$(function () {
+    $("#legend").toggle(function () {
+        $(this).animate({right:'0px'}, {queue: false, duration: 500});
+    }, function () {
+        $(this).animate({right:'-200px'}, {queue: false, duration: 500});
+    });
+});
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiYXRvZCIsImEiOiJjanA5anp5cnQwNTB5M3JvNTgyeTR1NjZiIn0.q5oquljep0gfRnaIsgBGiA';
 const map = new mapboxgl.Map({
-container: 'map',
-style: 'mapbox://styles/atod/cjpgfws3y56qm2rodj9kyegy0',
-center: [1.522281952417984, 27.10609555592403],
-zoom: 1
+    container: 'map',
+    style: 'mapbox://styles/atod/cjpgfws3y56qm2rodj9kyegy0',
+    center: [1.522281952417984, 27.10609555592403],
+    zoom: 1
 });
 
 var geojson = "map-data.php";
@@ -183,20 +239,60 @@ map.on('click', 'samples-point', function (e) {
 map.addControl(new mapboxgl.NavigationControl({ position: 'top-left' }));
 
 dict = {
-    '#005493': 'Human - Blood', 
-    '#0096FF':'Human - Urine', 
-    '#941100':'Livestock - Blood', 
-    '#FF7D78':'Livestock - Urine', 
-    '#FF9300':'Food - Peanuts', 
-    '#935100':'Food - Cocoa', 
-    '#EAEAEA':'Food - Milk', 
-    '#FFD478':'Food - Wheat', 
-    '#FEFC78':'Food - Corn', 
-    '#D783FF':'Food - Other'
-    }
-
-for (var key in dict){
-//   console.log( key, dict[key] );
-  legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 0 ' + [(20 - 15) / 2] + 'px;background-color:'  + key + ';"></span><p>' + dict[key] + '</p><br></div>');
+    '#005493': 'Human - Blood',
+    '#0096FF': 'Human - Urine',
+    '#941100': 'Livestock - Blood',
+    '#FF7D78': 'Livestock - Urine',
+    '#FF9300': 'Food - Peanuts',
+    '#935100': 'Food - Cocoa',
+    '#EAEAEA': 'Food - Milk',
+    '#FFD478': 'Food - Wheat',
+    '#FEFC78': 'Food - Corn',
+    '#D783FF': 'Food - Other'
 }
-legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 0 ' + [(20 - 15) / 2] + 'px;background-color: #ffffff; border: 2px solid red;"></span><br><p>' + 'Above Normal Range' + '</p><br></div>');
+
+for (var key in dict) {
+    //   console.log( key, dict[key] );
+    // legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 0 ' + [(20 - 15) / 2] + 'px;background-color:' + key + ';"></span><p>' + dict[key] + '</p><br></div>');
+    legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 0' + 'px;background-color:' + key + ';"></span><p>' + dict[key] + '</p><br></div>');
+
+}
+legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 0' + 'px;background-color: #ffffff; border: 2px solid red;"></span><br><p>' + 'Above Normal Range' + '</p><br></div>');
+// legend.insertAdjacentHTML('beforeend', '<div><span style="width:' + 15 + 'px;height:' + 15 + 'px;margin: 0 ' + [(20 - 15) / 2] + 'px;background-color: #ffffff; border: 2px solid red;"></span><br><p>' + 'Above Normal Range' + '</p><br></div>');
+
+// $(document).click(function (){
+//     $(".legend").toggle("slide", { direction: "left" });
+// });
+
+// $(".tab-content").click(function(){
+//     $(".legend").animate({
+//       width: "100px"
+//     });
+// });
+
+// $(".tab-content").click(function () {
+//     $("#legend").animate({ width: "toggle" });
+// });
+
+// var acc = document.getElementsByClassName("accordion");
+// var i;
+
+// for (i = 0; i < acc.length; i++) {
+//   acc[i].addEventListener("click", function() {
+//     this.classList.toggle("active");
+//     var panel = this.nextElementSibling;
+//     if (panel.style.display === "block") {
+//       panel.style.display = "none";
+//       panel.style.transition = "1s";
+//     } else {
+//       panel.style.display = "block";
+//       panel.style.transition = "1s";
+//     }
+//   });
+// }
+
+// $(".accordion").click(function() {
+// 	$('.add').toggleClass('added');
+//     console.log("hello");
+// });
+
